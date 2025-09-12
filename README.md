@@ -6,10 +6,10 @@
 docker build -t smolvlm .
 
 # Запуск контейнера
-docker run -p 8000:8000 -it --rm smolvlm
+С поддержкой видеокарты: docker run -p 8000:8000 -it --rm --gpus all smolvlm 
+Без поддержки видеокарты: docker run -p 8000:8000 -it --rm smolvlm 
 
 # Настройки
-
 В Dockerfile можно настроить:
 
     NN_VER - версия модели: 256M или 500M
