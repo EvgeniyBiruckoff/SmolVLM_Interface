@@ -1,6 +1,6 @@
-SmolVLM
+# SmolVLM
 
-Проект для запуска SmolVLM модели с поддержкой GPU и CPU.
+Интерфейс для SmolVLM
 
 # Сборка образа
 docker build -t smolvlm .
