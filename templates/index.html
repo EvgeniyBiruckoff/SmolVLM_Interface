@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmolVLM</title>
+    <link href="{{ url_for('static', path='/css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <h1>SmolVLM</h1>
+    </div>
+    
+    <div class="container">
+        <div class="form-container left-form">
+            <h2 class="form-title">Описать картинку</h2>
+            <form id="describe-form">
+                <div class="form-group">
+                    <input type="text" id="left-link" placeholder="Ссылка на картинку">
+                </div>
+                <button type="submit" class="btn">Узнать</button>
+            </form>
+        </div>
+        
+        <div class="form-container right-form">
+            <h2 class="form-title">Задать вопрос</h2>
+            <form id="question-form">
+                <div class="form-group">
+                    <input type="text" id="right-prompt" placeholder="Запрос">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="right-link" placeholder="Ссылка на картинку">
+                </div>
+                <button type="submit" class="btn">Узнать</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', path='/js/script.js') }}"></script>
+</body>
+    <div class="foot">
+        <h1 id="result">Ответ</h1>
+    </div>
+</html>
