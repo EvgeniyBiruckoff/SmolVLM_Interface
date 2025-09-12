@@ -8,7 +8,7 @@ docker build -t smolvlm .
 # Запуск контейнера
 docker run -p 8000:8000 -it --rm smolvlm
 
-Настройки
+# Настройки
 
 В Dockerfile можно настроить:
 
