@@ -6,7 +6,8 @@
 docker build -t smolvlm .
 
 # Запуск контейнера
-С поддержкой видеокарты: docker run -p 8000:8000 -it --rm --gpus all smolvlm 
+С поддержкой видеокарты: docker run -p 8000:8000 -it --rm --gpus all smolvlm
+
 Без поддержки видеокарты: docker run -p 8000:8000 -it --rm smolvlm 
 
 # Настройки
