@@ -15,9 +15,6 @@
         <div class="form-container left-form">
             <h2 class="form-title">Описать картинку</h2>
             <form id="describe-form">
-                <div class="form-group">
-                    <input type="text" id="left-link" placeholder="Ссылка на картинку">
-                </div>
                 <button type="submit" class="btn">Узнать</button>
             </form>
         </div>
@@ -28,14 +25,23 @@
                 <div class="form-group">
                     <input type="text" id="right-prompt" placeholder="Запрос">
                 </div>
-                <div class="form-group">
-                    <input type="text" id="right-link" placeholder="Ссылка на картинку">
-                </div>
                 <button type="submit" class="btn">Узнать</button>
             </form>
         </div>
     </div>
 
+    <button type="submit" class="btn" onclick="openUploadModal()">Загрузить</button>
+    <div id="upload-modal" class="modal">
+        <div class="form-container">
+            <h2 class="form-title">Загрузить картинку</h2>
+            <form id="upload-form">
+                <div class="form-group">
+                    <input type="text" id="image-url" placeholder="Ссылка на картинку">
+                </div>
+                <button type="submit" class="btn">Загрузить</button>
+            </form>
+        </div>
+    </div>
     <script src="{{ url_for('static', path='/js/script.js') }}"></script>
 </body>
     <div class="foot">

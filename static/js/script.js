@@ -1,30 +1,36 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Форма "Описать картинку"
     const describeForm = document.getElementById('describe-form');
     describeForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        const link = document.getElementById('left-link').value;
-        if (link) {
-            fetchDescribeImage(link);
-        }
+        fetchDescribeImage();
     });
 
-    // Форма "Задать вопрос"
     const questionForm = document.getElementById('question-form');
     questionForm.addEventListener('submit', function(e) {
         e.preventDefault();
         const prompt = document.getElementById('right-prompt').value;
-        const link = document.getElementById('right-link').value;
-        if (prompt && link) {
-            fetchAskQuestion(prompt, link);
+        if (prompt) {
+            fetchAskQuestion(prompt);
         }
     });
+    const set_image_form = document.getElementById('upload-form')
+    set_image_form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const url = document.getElementById('image-url').value;
+        if (url) {
+            fetchSetImage(url);
+            closeUploadModal();
+        } else {
+            showResult('Введите URL изображения');
+        }
+    });
+
 });
 
-// Функция для описания картинки
-async function fetchDescribeImage(link) {
+async function fetchDescribeImage() {
     try {
-        const response = await fetch(`/what_answer?link=${encodeURIComponent(link)}`);
+        // Передаем ссылку на сервер
+        const response = await fetch(`/what_answer`);
         const data = await response.json();
         showResult(data.answer);
     } catch (error) {
@@ -33,10 +39,9 @@ async function fetchDescribeImage(link) {
     }
 }
 
-// Функция для вопроса о картинке
-async function fetchAskQuestion(prompt, link) {
+async function fetchAskQuestion(prompt) {
     try {
-        const response = await fetch(`/any_answer?promt=${encodeURIComponent(prompt)}&link=${encodeURIComponent(link)}`);
+        const response = await fetch(`/any_answer?prompt=${encodeURIComponent(prompt)}`);
         const data = await response.json();
         showResult(data.answer);
     } catch (error) {
@@ -45,9 +50,34 @@ async function fetchAskQuestion(prompt, link) {
     }
 }
 
-// Функция для отображения результата (добавьте куда хотите выводить результат)
+async function fetchSetImage(link) {
+    try {
+        const response = await fetch(`/set_image?link=${encodeURIComponent(link)}`);
+        const data = await response.json();
+        showResult('Изображение успешно загружено');
+    } catch (error) {
+        console.error('Ошибка:', error);
+        showResult('Произошла ошибка при обработке запроса');
+    }
+}
+
 function showResult(result) {
     const h2Element = document.getElementById('result');
     h2Element.textContent = result;
     console.log('Результат:', result);
+}
+
+function openUploadModal() {
+    document.getElementById('upload-modal').style.display = 'block';
+}
+
+function closeUploadModal() {
+    document.getElementById('upload-modal').style.display = 'none';
+}
+
+window.onclick = function(event) {
+    const modal = document.getElementById('upload-modal');
+    if (event.target === modal) {
+        closeUploadModal();
+    }
 }
