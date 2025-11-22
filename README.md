@@ -6,8 +6,8 @@
 docker build -t smolvlm .
 
 # Запуск контейнера
-С поддержкой видеокарты: docker run -p 8000:8000 -it --rm --gpus all -v $(pwd)/data:/app/data smolvlm
-Без поддержки видеокарты: docker run -p 8000:8000 -it --rm -v $(pwd)/data:/app/data smolvlm
+С поддержкой видеокарты: docker run -p 8000:8000 -it --rm --gpus all -v \$(pwd)/data:/app/data smolvlm
+Без поддержки видеокарты: docker run -p 8000:8000 -it --rm -v \$(pwd)/data:/app/data smolvlm
 
 # Настройки
 В Dockerfile можно настроить:
